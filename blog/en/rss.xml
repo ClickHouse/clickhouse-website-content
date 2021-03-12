@@ -11,6 +11,16 @@
     
         
         <item>
+           <title>Fuzzing ClickHouse</title>
+           <description><![CDATA[<img src="https://blog-images.clickhouse.tech/en/2021/fuzzing-clickhouse/some-checks-were-not-successful.png" />]]></description>
+           <pubDate>Thu, 11 Mar 2021 00:00:00 GMT</pubDate>
+           <guid isPermaLink="true">https://clickhouse.tech/blog/en/2021/fuzzing-clickhouse/</guid>
+           <link>https://clickhouse.tech/blog/en/2021/fuzzing-clickhouse/</link>
+           
+        </item>
+    
+        
+        <item>
            <title>A journey to io_uring, AIO and modern storage devices</title>
            <description><![CDATA[<img src="https://blog-images.clickhouse.tech/en/2021/reading-from-external-memory/all-single-read.png" />]]></description>
            <pubDate>Tue, 09 Mar 2021 00:00:00 GMT</pubDate>
@@ -241,21 +251,21 @@
     
         
         <item>
-           <title>Join the ClickHouse Meetup in Berlin</title>
-           <description><![CDATA[<img src="https://blog-images.clickhouse.tech/en/2017/join-the-clickhouse-meetup-in-berlin/main.jpg" />]]></description>
-           <pubDate>Thu, 19 Oct 2017 00:00:00 GMT</pubDate>
-           <guid isPermaLink="true">https://clickhouse.tech/blog/en/2017/join-the-clickhouse-meetup-in-berlin/</guid>
-           <link>https://clickhouse.tech/blog/en/2017/join-the-clickhouse-meetup-in-berlin/</link>
-           
-        </item>
-    
-        
-        <item>
            <title>ClickHouse Meetup in Berlin, October 5, 2017</title>
            <description><![CDATA[<img src="https://blog-images.clickhouse.tech/en/2017/clickhouse-meetup-in-berlin-october-5-2017/main.jpg" />]]></description>
            <pubDate>Thu, 19 Oct 2017 00:00:00 GMT</pubDate>
            <guid isPermaLink="true">https://clickhouse.tech/blog/en/2017/clickhouse-meetup-in-berlin-october-5-2017/</guid>
            <link>https://clickhouse.tech/blog/en/2017/clickhouse-meetup-in-berlin-october-5-2017/</link>
+           
+        </item>
+    
+        
+        <item>
+           <title>Join the ClickHouse Meetup in Berlin</title>
+           <description><![CDATA[<img src="https://blog-images.clickhouse.tech/en/2017/join-the-clickhouse-meetup-in-berlin/main.jpg" />]]></description>
+           <pubDate>Thu, 19 Oct 2017 00:00:00 GMT</pubDate>
+           <guid isPermaLink="true">https://clickhouse.tech/blog/en/2017/join-the-clickhouse-meetup-in-berlin/</guid>
+           <link>https://clickhouse.tech/blog/en/2017/join-the-clickhouse-meetup-in-berlin/</link>
            
         </item>
     

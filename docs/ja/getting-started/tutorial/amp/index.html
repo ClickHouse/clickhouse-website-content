@@ -1,0 +1,502 @@
+<!doctype html><html ⚡ lang=ja> <head><meta charset=utf-8><script async src=https://cdn.ampproject.org/v0.js></script><title>チュートリアル | ClickHouseドキュメント</title><link href=https://clickhouse.tech/docs/ja/getting-started/tutorial/ rel=canonical><meta name=viewport content="width=device-width,minimum-scale=1,initial-scale=1"><script type=application/ld+json>[{
+"@context": "http://schema.org",
+"@type": "TechArticle",
+"headline": "チュートリアル | ClickHouseドキュメント",
+"mainEntityOfPage": "https://clickhouse.tech/docs/ja/getting-started/tutorial/",
+
+
+
+
+"image": "https://clickhouse.tech/images/logo-209x60.png",
+"author": {
+  "@type": "Project",
+  "name": "ClickHouse"
+},
+"publisher": {
+  "@type": "Organization",
+  "name": "Yandex LLC",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://clickhouse.tech/images/yandex.png",
+    "width": 163,
+    "height": 60
+  }
+}}, {
+"@context": "http://schema.org",
+"@type": "Episode",
+"name": "チュートリアル | ClickHouseドキュメント",
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": RATING_VALUE,
+  "ratingCount": RATING_COUNT
+}
+}]</script><style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript><style amp-custom>:root{--blue:#007bff;--indigo:#6610f2;--purple:#6f42c1;--pink:#e83e8c;--red:#dc3545;--orange:#fd7e14;--yellow:#ffc107;--green:#28a745;--teal:#20c997;--cyan:#17a2b8;--white:#fff;--gray:#6c757d;--gray-dark:#343a40;--primary:#007bff;--secondary:#6c757d;--success:#28a745;--info:#17a2b8;--warning:#ffc107;--danger:#dc3545;--light:#f8f9fa;--dark:#343a40;--breakpoint-xs:0;--breakpoint-sm:576px;--breakpoint-md:768px;--breakpoint-lg:992px;--breakpoint-xl:1200px;--font-family-sans-serif:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";--font-family-monospace:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace}*,::after,::before{box-sizing:border-box}html{font-family:sans-serif;line-height:1.15;-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent}article,footer,main{display:block}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";font-size:1rem;font-weight:400;line-height:1.5;color:#212529;text-align:left;background-color:#fff}[tabindex="-1"]:focus:not(:focus-visible){outline:0}h1,h2,h3,h4,h5,h6{margin-top:0;margin-bottom:.5rem}p{margin-top:0;margin-bottom:1rem}ol,ul{margin-top:0;margin-bottom:1rem}ol ol,ol ul,ul ol,ul ul{margin-bottom:0}b,strong{font-weight:bolder}a{color:#007bff;text-decoration:none;background-color:transparent}a:hover{color:#0056b3;text-decoration:underline}a:not([href]){color:inherit;text-decoration:none}a:not([href]):hover{color:inherit;text-decoration:none}code,pre{font-family:SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:1em}pre{margin-top:0;margin-bottom:1rem;overflow:auto}img{vertical-align:middle;border-style:none}svg{overflow:hidden;vertical-align:middle}table{border-collapse:collapse}select{margin:0;font-family:inherit;font-size:inherit;line-height:inherit}select{text-transform:none}select{word-wrap:normal}[type=button],[type=reset],[type=submit]{-webkit-appearance:button}[type=button]:not(:disabled),[type=reset]:not(:disabled),[type=submit]:not(:disabled){cursor:pointer}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner{padding:0;border-style:none}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{outline-offset:-2px;-webkit-appearance:none}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{font:inherit;-webkit-appearance:button}summary{display:list-item;cursor:pointer}[hidden]{display:none}.h1,.h2,.h3,.h4,.h5,.h6,h1,h2,h3,h4,h5,h6{margin-bottom:.5rem;font-weight:500;line-height:1.2}.h1,h1{font-size:2rem}.h2,h2{font-size:1.5rem}.h3,h3{font-size:1.25rem}.h4,h4{font-size:1rem}.h5,h5{font-size:1rem}.h6,h6{font-size:1rem}.display-1{font-size:6rem;font-weight:300;line-height:1.2}.display-2{font-size:5.5rem;font-weight:300;line-height:1.2}.display-3{font-size:4.5rem;font-weight:300;line-height:1.2}.display-4{font-size:3.5rem;font-weight:300;line-height:1.2}.list-inline{padding-left:0;list-style:none}.img-fluid{max-width:100%;height:auto}code{font-size:87.5%;color:#e83e8c;word-wrap:break-word}a>code{color:inherit}pre{display:block;font-size:87.5%;color:#212529}pre code{font-size:inherit;color:inherit;word-break:normal}.container{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container{max-width:720px}}@media(min-width:992px){.container{max-width:960px}}@media(min-width:1200px){.container{max-width:1140px}}.container-fluid,.container-lg,.container-md{width:100%;padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}@media(min-width:576px){.container{max-width:540px}}@media(min-width:768px){.container,.container-md{max-width:720px}}@media(min-width:992px){.container,.container-lg,.container-md{max-width:960px}}@media(min-width:1200px){.container,.container-lg,.container-md{max-width:1140px}}.row{display:-ms-flexbox;display:flex;-ms-flex-wrap:wrap;flex-wrap:wrap;margin-right:-15px;margin-left:-15px}.col,.col-1,.col-10,.col-11,.col-12,.col-2,.col-3,.col-4,.col-5,.col-6,.col-7,.col-8,.col-9,.col-lg,.col-lg-1,.col-lg-10,.col-lg-11,.col-lg-12,.col-lg-2,.col-lg-3,.col-lg-4,.col-lg-5,.col-lg-6,.col-lg-7,.col-lg-8,.col-lg-9,.col-md,.col-md-1,.col-md-10,.col-md-11,.col-md-12,.col-md-2,.col-md-3,.col-md-4,.col-md-5,.col-md-6,.col-md-7,.col-md-8,.col-md-9{position:relative;width:100%;padding-right:15px;padding-left:15px}.col{-ms-flex-preferred-size:0;flex-basis:0;-ms-flex-positive:1;flex-grow:1;max-width:100%}.col-1{-ms-flex:0 0 8.333333%;flex:0 0 8.333333%;max-width:8.333333%}.col-2{-ms-flex:0 0 16.666667%;flex:0 0 16.666667%;max-width:16.666667%}.col-3{-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%}.col-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}.col-5{-ms-flex:0 0 41.666667%;flex:0 0 41.666667%;max-width:41.666667%}.col-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}.col-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}.col-8{-ms-flex:0 0 66.666667%;flex:0 0 66.666667%;max-width:66.666667%}.col-9{-ms-flex:0 0 75%;flex:0 0 75%;max-width:75%}.col-10{-ms-flex:0 0 83.333333%;flex:0 0 83.333333%;max-width:83.333333%}.col-11{-ms-flex:0 0 91.666667%;flex:0 0 91.666667%;max-width:91.666667%}.col-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}.order-0{-ms-flex-order:0;order:0}.order-1{-ms-flex-order:1;order:1}.order-2{-ms-flex-order:2;order:2}.order-3{-ms-flex-order:3;order:3}.order-4{-ms-flex-order:4;order:4}.order-5{-ms-flex-order:5;order:5}.order-6{-ms-flex-order:6;order:6}.order-7{-ms-flex-order:7;order:7}.order-8{-ms-flex-order:8;order:8}.order-9{-ms-flex-order:9;order:9}.order-10{-ms-flex-order:10;order:10}.order-11{-ms-flex-order:11;order:11}.order-12{-ms-flex-order:12;order:12}@media(min-width:768px){.col-md{-ms-flex-preferred-size:0;flex-basis:0;-ms-flex-positive:1;flex-grow:1;max-width:100%}.col-md-1{-ms-flex:0 0 8.333333%;flex:0 0 8.333333%;max-width:8.333333%}.col-md-2{-ms-flex:0 0 16.666667%;flex:0 0 16.666667%;max-width:16.666667%}.col-md-3{-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%}.col-md-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}.col-md-5{-ms-flex:0 0 41.666667%;flex:0 0 41.666667%;max-width:41.666667%}.col-md-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}.col-md-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}.col-md-8{-ms-flex:0 0 66.666667%;flex:0 0 66.666667%;max-width:66.666667%}.col-md-9{-ms-flex:0 0 75%;flex:0 0 75%;max-width:75%}.col-md-10{-ms-flex:0 0 83.333333%;flex:0 0 83.333333%;max-width:83.333333%}.col-md-11{-ms-flex:0 0 91.666667%;flex:0 0 91.666667%;max-width:91.666667%}.col-md-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}.order-md-0{-ms-flex-order:0;order:0}.order-md-1{-ms-flex-order:1;order:1}.order-md-2{-ms-flex-order:2;order:2}.order-md-3{-ms-flex-order:3;order:3}.order-md-4{-ms-flex-order:4;order:4}.order-md-5{-ms-flex-order:5;order:5}.order-md-6{-ms-flex-order:6;order:6}.order-md-7{-ms-flex-order:7;order:7}.order-md-8{-ms-flex-order:8;order:8}.order-md-9{-ms-flex-order:9;order:9}.order-md-10{-ms-flex-order:10;order:10}.order-md-11{-ms-flex-order:11;order:11}.order-md-12{-ms-flex-order:12;order:12}}@media(min-width:992px){.col-lg{-ms-flex-preferred-size:0;flex-basis:0;-ms-flex-positive:1;flex-grow:1;max-width:100%}.col-lg-1{-ms-flex:0 0 8.333333%;flex:0 0 8.333333%;max-width:8.333333%}.col-lg-2{-ms-flex:0 0 16.666667%;flex:0 0 16.666667%;max-width:16.666667%}.col-lg-3{-ms-flex:0 0 25%;flex:0 0 25%;max-width:25%}.col-lg-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}.col-lg-5{-ms-flex:0 0 41.666667%;flex:0 0 41.666667%;max-width:41.666667%}.col-lg-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}.col-lg-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}.col-lg-8{-ms-flex:0 0 66.666667%;flex:0 0 66.666667%;max-width:66.666667%}.col-lg-9{-ms-flex:0 0 75%;flex:0 0 75%;max-width:75%}.col-lg-10{-ms-flex:0 0 83.333333%;flex:0 0 83.333333%;max-width:83.333333%}.col-lg-11{-ms-flex:0 0 91.666667%;flex:0 0 91.666667%;max-width:91.666667%}.col-lg-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}.order-lg-0{-ms-flex-order:0;order:0}.order-lg-1{-ms-flex-order:1;order:1}.order-lg-2{-ms-flex-order:2;order:2}.order-lg-3{-ms-flex-order:3;order:3}.order-lg-4{-ms-flex-order:4;order:4}.order-lg-5{-ms-flex-order:5;order:5}.order-lg-6{-ms-flex-order:6;order:6}.order-lg-7{-ms-flex-order:7;order:7}.order-lg-8{-ms-flex-order:8;order:8}.order-lg-9{-ms-flex-order:9;order:9}.order-lg-10{-ms-flex-order:10;order:10}.order-lg-11{-ms-flex-order:11;order:11}.order-lg-12{-ms-flex-order:12;order:12}}.table{width:100%;margin-bottom:1rem;color:#212529}.table-primary{background-color:#b8daff}.table-warning{background-color:#ffeeba}.table-light{background-color:#fdfdfe}.table-dark{background-color:#c6c8ca}.table-dark{color:#fff;background-color:#343a40}.btn{display:inline-block;font-weight:400;color:#212529;text-align:center;vertical-align:middle;cursor:pointer;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;background-color:transparent;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem}@media(prefers-reduced-motion:reduce){.btn{transition:none}}.btn:hover{color:#212529;text-decoration:none}.btn:focus{outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.btn:disabled{opacity:.65}.btn-primary{color:#fff;background-color:#007bff;border-color:#007bff}.btn-primary:hover{color:#fff;background-color:#0069d9;border-color:#0062cc}.btn-primary:focus{color:#fff;background-color:#0069d9;border-color:#0062cc;box-shadow:0 0 0 .2rem rgba(38,143,255,.5)}.btn-primary:disabled{color:#fff;background-color:#007bff;border-color:#007bff}.btn-warning{color:#212529;background-color:#ffc107;border-color:#ffc107}.btn-warning:hover{color:#212529;background-color:#e0a800;border-color:#d39e00}.btn-warning:focus{color:#212529;background-color:#e0a800;border-color:#d39e00;box-shadow:0 0 0 .2rem rgba(222,170,12,.5)}.btn-warning:disabled{color:#212529;background-color:#ffc107;border-color:#ffc107}.btn-light{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa}.btn-light:hover{color:#212529;background-color:#e2e6ea;border-color:#dae0e5}.btn-light:focus{color:#212529;background-color:#e2e6ea;border-color:#dae0e5;box-shadow:0 0 0 .2rem rgba(216,217,219,.5)}.btn-light:disabled{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa}.btn-dark{color:#fff;background-color:#343a40;border-color:#343a40}.btn-dark:hover{color:#fff;background-color:#23272b;border-color:#1d2124}.btn-dark:focus{color:#fff;background-color:#23272b;border-color:#1d2124;box-shadow:0 0 0 .2rem rgba(82,88,93,.5)}.btn-dark:disabled{color:#fff;background-color:#343a40;border-color:#343a40}.btn-outline-primary{color:#007bff;border-color:#007bff}.btn-outline-primary:hover{color:#fff;background-color:#007bff;border-color:#007bff}.btn-outline-primary:focus{box-shadow:0 0 0 .2rem rgba(0,123,255,.5)}.btn-outline-primary:disabled{color:#007bff;background-color:transparent}.btn-outline-warning{color:#ffc107;border-color:#ffc107}.btn-outline-warning:hover{color:#212529;background-color:#ffc107;border-color:#ffc107}.btn-outline-warning:focus{box-shadow:0 0 0 .2rem rgba(255,193,7,.5)}.btn-outline-warning:disabled{color:#ffc107;background-color:transparent}.btn-outline-light{color:#f8f9fa;border-color:#f8f9fa}.btn-outline-light:hover{color:#212529;background-color:#f8f9fa;border-color:#f8f9fa}.btn-outline-light:focus{box-shadow:0 0 0 .2rem rgba(248,249,250,.5)}.btn-outline-light:disabled{color:#f8f9fa;background-color:transparent}.btn-outline-dark{color:#343a40;border-color:#343a40}.btn-outline-dark:hover{color:#fff;background-color:#343a40;border-color:#343a40}.btn-outline-dark:focus{box-shadow:0 0 0 .2rem rgba(52,58,64,.5)}.btn-outline-dark:disabled{color:#343a40;background-color:transparent}.btn-link{font-weight:400;color:#007bff;text-decoration:none}.btn-link:hover{color:#0056b3;text-decoration:underline}.btn-link:focus{text-decoration:underline;box-shadow:none}.btn-link:disabled{color:#6c757d;pointer-events:none}.btn-group-lg>.btn,.btn-lg{padding:.5rem 1rem;font-size:1.25rem;line-height:1.5;border-radius:.3rem}.btn-block{display:block;width:100%}.btn-block+.btn-block{margin-top:.5rem}.collapsing{position:relative;height:0;overflow:hidden}@media(prefers-reduced-motion:reduce){.collapsing{transition:none}}.btn-group{position:relative;display:-ms-inline-flexbox;display:inline-flex;vertical-align:middle}.btn-group>.btn{position:relative;-ms-flex:1 1 auto;flex:1 1 auto}.btn-group>.btn:hover{z-index:1}.btn-group>.btn:active,.btn-group>.btn:focus{z-index:1}.btn-group>.btn-group:not(:first-child),.btn-group>.btn:not(:first-child){margin-left:-1px}.btn-group>.btn-group:not(:last-child)>.btn{border-top-right-radius:0;border-bottom-right-radius:0}.btn-group>.btn-group:not(:first-child)>.btn,.btn-group>.btn:not(:first-child){border-top-left-radius:0;border-bottom-left-radius:0}.custom-control{position:relative;display:block;min-height:1.5rem;padding-left:1.5rem}.custom-control-inline{display:-ms-inline-flexbox;display:inline-flex;margin-right:1rem}.custom-select{display:inline-block;width:100%;height:calc(1.5em+.75rem+2px);padding:.375rem 1.75rem .375rem .75rem;font-size:1rem;font-weight:400;line-height:1.5;color:#495057;vertical-align:middle;background:#fff url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='4' height='5' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;border:1px solid #ced4da;border-radius:.25rem;-webkit-appearance:none;-moz-appearance:none;appearance:none}.custom-select:focus{border-color:#80bdff;outline:0;box-shadow:0 0 0 .2rem rgba(0,123,255,.25)}.custom-select:focus::-ms-value{color:#495057;background-color:#fff}.custom-select[multiple],.custom-select[size]:not([size="1"]){height:auto;padding-right:.75rem;background-image:none}.custom-select:disabled{color:#6c757d;background-color:#e9ecef}.custom-select::-ms-expand{display:none}.custom-select:-moz-focusring{color:transparent;text-shadow:0 0 0 #495057}.custom-select-lg{height:calc(1.5em+1rem+2px);padding-top:.5rem;padding-bottom:.5rem;padding-left:1rem;font-size:1.25rem}@media(prefers-reduced-motion:reduce){.custom-select{transition:none}}.alert{position:relative;padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem}.alert-heading{color:inherit}.alert-link{font-weight:700}.alert-primary{color:#004085;background-color:#cce5ff;border-color:#b8daff}.alert-primary .alert-link{color:#002752}.alert-warning{color:#856404;background-color:#fff3cd;border-color:#ffeeba}.alert-warning .alert-link{color:#533f03}.alert-light{color:#818182;background-color:#fefefe;border-color:#fdfdfe}.alert-light .alert-link{color:#686868}.alert-dark{color:#1b1e21;background-color:#d6d8d9;border-color:#c6c8ca}.alert-dark .alert-link{color:#040505}@-webkit-keyframes progress-bar-stripes{from{background-position:1rem 0}to{background-position:0 0}}@keyframes progress-bar-stripes{from{background-position:1rem 0}to{background-position:0 0}}.list-group{display:-ms-flexbox;display:flex;-ms-flex-direction:column;flex-direction:column;padding-left:0;margin-bottom:0}@-webkit-keyframes spinner-border{to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@keyframes spinner-border{to{-webkit-transform:rotate(360deg);transform:rotate(360deg)}}@-webkit-keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}@keyframes spinner-grow{0%{-webkit-transform:scale(0);transform:scale(0)}50%{opacity:1}}.bg-primary{background-color:#007bff}a.bg-primary:focus,a.bg-primary:hover{background-color:#0062cc}.bg-warning{background-color:#ffc107}a.bg-warning:focus,a.bg-warning:hover{background-color:#d39e00}.bg-light{background-color:#f8f9fa}a.bg-light:focus,a.bg-light:hover{background-color:#dae0e5}.bg-dark{background-color:#343a40}a.bg-dark:focus,a.bg-dark:hover{background-color:#1d2124}.bg-white{background-color:#fff}.d-none{display:none}.d-inline{display:inline}.d-inline-block{display:inline-block}.d-block{display:block}.d-table{display:table}.d-table-row{display:table-row}@media(min-width:768px){.d-md-none{display:none}.d-md-inline{display:inline}.d-md-inline-block{display:inline-block}.d-md-block{display:block}.d-md-table{display:table}.d-md-table-row{display:table-row}}@media(min-width:992px){.d-lg-none{display:none}.d-lg-inline{display:inline}.d-lg-inline-block{display:inline-block}.d-lg-block{display:block}.d-lg-table{display:table}.d-lg-table-row{display:table-row}}.float-right{float:right}.float-none{float:none}@media(min-width:768px){.float-md-right{float:right}.float-md-none{float:none}}@media(min-width:992px){.float-lg-right{float:right}.float-lg-none{float:none}}.fixed-bottom{position:fixed;right:0;bottom:0;left:0;z-index:1030}.h-25{height:25%}.h-50{height:50%}.h-75{height:75%}.h-100{height:100%}.m-0{margin:0}.my-0{margin-top:0}.mr-0{margin-right:0}.mb-0,.my-0{margin-bottom:0}.m-1{margin:.25rem}.my-1{margin-top:.25rem}.mr-1{margin-right:.25rem}.mb-1,.my-1{margin-bottom:.25rem}.m-2{margin:.5rem}.my-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.mb-2,.my-2{margin-bottom:.5rem}.m-3{margin:1rem}.my-3{margin-top:1rem}.mr-3{margin-right:1rem}.mb-3,.my-3{margin-bottom:1rem}.m-4{margin:1.5rem}.my-4{margin-top:1.5rem}.mr-4{margin-right:1.5rem}.mb-4,.my-4{margin-bottom:1.5rem}.m-5{margin:3rem}.my-5{margin-top:3rem}.mr-5{margin-right:3rem}.mb-5,.my-5{margin-bottom:3rem}.p-0{padding:0}.pt-0,.py-0{padding-top:0}.pb-0,.py-0{padding-bottom:0}.p-1{padding:.25rem}.pt-1,.py-1{padding-top:.25rem}.pb-1,.py-1{padding-bottom:.25rem}.p-2{padding:.5rem}.pt-2,.py-2{padding-top:.5rem}.pb-2,.py-2{padding-bottom:.5rem}.p-3{padding:1rem}.pt-3,.py-3{padding-top:1rem}.pb-3,.py-3{padding-bottom:1rem}.p-4{padding:1.5rem}.pt-4,.py-4{padding-top:1.5rem}.pb-4,.py-4{padding-bottom:1.5rem}.p-5{padding:3rem}.pt-5,.py-5{padding-top:3rem}.pb-5,.py-5{padding-bottom:3rem}.m-n1{margin:-.25rem}.my-n1{margin-top:-.25rem}.mr-n1{margin-right:-.25rem}.mb-n1,.my-n1{margin-bottom:-.25rem}.m-n2{margin:-.5rem}.my-n2{margin-top:-.5rem}.mr-n2{margin-right:-.5rem}.mb-n2,.my-n2{margin-bottom:-.5rem}.m-n3{margin:-1rem}.my-n3{margin-top:-1rem}.mr-n3{margin-right:-1rem}.mb-n3,.my-n3{margin-bottom:-1rem}.m-n4{margin:-1.5rem}.my-n4{margin-top:-1.5rem}.mr-n4{margin-right:-1.5rem}.mb-n4,.my-n4{margin-bottom:-1.5rem}.m-n5{margin:-3rem}.my-n5{margin-top:-3rem}.mr-n5{margin-right:-3rem}.mb-n5,.my-n5{margin-bottom:-3rem}@media(min-width:768px){.m-md-0{margin:0}.my-md-0{margin-top:0}.mr-md-0{margin-right:0}.mb-md-0,.my-md-0{margin-bottom:0}.m-md-1{margin:.25rem}.my-md-1{margin-top:.25rem}.mr-md-1{margin-right:.25rem}.mb-md-1,.my-md-1{margin-bottom:.25rem}.m-md-2{margin:.5rem}.my-md-2{margin-top:.5rem}.mr-md-2{margin-right:.5rem}.mb-md-2,.my-md-2{margin-bottom:.5rem}.m-md-3{margin:1rem}.my-md-3{margin-top:1rem}.mr-md-3{margin-right:1rem}.mb-md-3,.my-md-3{margin-bottom:1rem}.m-md-4{margin:1.5rem}.my-md-4{margin-top:1.5rem}.mr-md-4{margin-right:1.5rem}.mb-md-4,.my-md-4{margin-bottom:1.5rem}.m-md-5{margin:3rem}.my-md-5{margin-top:3rem}.mr-md-5{margin-right:3rem}.mb-md-5,.my-md-5{margin-bottom:3rem}.p-md-0{padding:0}.pt-md-0,.py-md-0{padding-top:0}.pb-md-0,.py-md-0{padding-bottom:0}.p-md-1{padding:.25rem}.pt-md-1,.py-md-1{padding-top:.25rem}.pb-md-1,.py-md-1{padding-bottom:.25rem}.p-md-2{padding:.5rem}.pt-md-2,.py-md-2{padding-top:.5rem}.pb-md-2,.py-md-2{padding-bottom:.5rem}.p-md-3{padding:1rem}.pt-md-3,.py-md-3{padding-top:1rem}.pb-md-3,.py-md-3{padding-bottom:1rem}.p-md-4{padding:1.5rem}.pt-md-4,.py-md-4{padding-top:1.5rem}.pb-md-4,.py-md-4{padding-bottom:1.5rem}.p-md-5{padding:3rem}.pt-md-5,.py-md-5{padding-top:3rem}.pb-md-5,.py-md-5{padding-bottom:3rem}.m-md-n1{margin:-.25rem}.my-md-n1{margin-top:-.25rem}.mr-md-n1{margin-right:-.25rem}.mb-md-n1,.my-md-n1{margin-bottom:-.25rem}.m-md-n2{margin:-.5rem}.my-md-n2{margin-top:-.5rem}.mr-md-n2{margin-right:-.5rem}.mb-md-n2,.my-md-n2{margin-bottom:-.5rem}.m-md-n3{margin:-1rem}.my-md-n3{margin-top:-1rem}.mr-md-n3{margin-right:-1rem}.mb-md-n3,.my-md-n3{margin-bottom:-1rem}.m-md-n4{margin:-1.5rem}.my-md-n4{margin-top:-1.5rem}.mr-md-n4{margin-right:-1.5rem}.mb-md-n4,.my-md-n4{margin-bottom:-1.5rem}.m-md-n5{margin:-3rem}.my-md-n5{margin-top:-3rem}.mr-md-n5{margin-right:-3rem}.mb-md-n5,.my-md-n5{margin-bottom:-3rem}}@media(min-width:992px){.m-lg-0{margin:0}.my-lg-0{margin-top:0}.mr-lg-0{margin-right:0}.mb-lg-0,.my-lg-0{margin-bottom:0}.m-lg-1{margin:.25rem}.my-lg-1{margin-top:.25rem}.mr-lg-1{margin-right:.25rem}.mb-lg-1,.my-lg-1{margin-bottom:.25rem}.m-lg-2{margin:.5rem}.my-lg-2{margin-top:.5rem}.mr-lg-2{margin-right:.5rem}.mb-lg-2,.my-lg-2{margin-bottom:.5rem}.m-lg-3{margin:1rem}.my-lg-3{margin-top:1rem}.mr-lg-3{margin-right:1rem}.mb-lg-3,.my-lg-3{margin-bottom:1rem}.m-lg-4{margin:1.5rem}.my-lg-4{margin-top:1.5rem}.mr-lg-4{margin-right:1.5rem}.mb-lg-4,.my-lg-4{margin-bottom:1.5rem}.m-lg-5{margin:3rem}.my-lg-5{margin-top:3rem}.mr-lg-5{margin-right:3rem}.mb-lg-5,.my-lg-5{margin-bottom:3rem}.p-lg-0{padding:0}.pt-lg-0,.py-lg-0{padding-top:0}.pb-lg-0,.py-lg-0{padding-bottom:0}.p-lg-1{padding:.25rem}.pt-lg-1,.py-lg-1{padding-top:.25rem}.pb-lg-1,.py-lg-1{padding-bottom:.25rem}.p-lg-2{padding:.5rem}.pt-lg-2,.py-lg-2{padding-top:.5rem}.pb-lg-2,.py-lg-2{padding-bottom:.5rem}.p-lg-3{padding:1rem}.pt-lg-3,.py-lg-3{padding-top:1rem}.pb-lg-3,.py-lg-3{padding-bottom:1rem}.p-lg-4{padding:1.5rem}.pt-lg-4,.py-lg-4{padding-top:1.5rem}.pb-lg-4,.py-lg-4{padding-bottom:1.5rem}.p-lg-5{padding:3rem}.pt-lg-5,.py-lg-5{padding-top:3rem}.pb-lg-5,.py-lg-5{padding-bottom:3rem}.m-lg-n1{margin:-.25rem}.my-lg-n1{margin-top:-.25rem}.mr-lg-n1{margin-right:-.25rem}.mb-lg-n1,.my-lg-n1{margin-bottom:-.25rem}.m-lg-n2{margin:-.5rem}.my-lg-n2{margin-top:-.5rem}.mr-lg-n2{margin-right:-.5rem}.mb-lg-n2,.my-lg-n2{margin-bottom:-.5rem}.m-lg-n3{margin:-1rem}.my-lg-n3{margin-top:-1rem}.mr-lg-n3{margin-right:-1rem}.mb-lg-n3,.my-lg-n3{margin-bottom:-1rem}.m-lg-n4{margin:-1.5rem}.my-lg-n4{margin-top:-1.5rem}.mr-lg-n4{margin-right:-1.5rem}.mb-lg-n4,.my-lg-n4{margin-bottom:-1.5rem}.m-lg-n5{margin:-3rem}.my-lg-n5{margin-top:-3rem}.mr-lg-n5{margin-right:-3rem}.mb-lg-n5,.my-lg-n5{margin-bottom:-3rem}}.text-right{text-align:right}.text-center{text-align:center}@media(min-width:768px){.text-md-right{text-align:right}.text-md-center{text-align:center}}@media(min-width:992px){.text-lg-right{text-align:right}.text-lg-center{text-align:center}}.text-white{color:#fff}.text-primary{color:#007bff}a.text-primary:focus,a.text-primary:hover{color:#0056b3}.text-warning{color:#ffc107}a.text-warning:focus,a.text-warning:hover{color:#ba8b00}.text-light{color:#f8f9fa}a.text-light:focus,a.text-light:hover{color:#cbd3da}.text-dark{color:#343a40}a.text-dark:focus,a.text-dark:hover{color:#121416}.text-body{color:#212529}.text-muted{color:#6c757d}.text-black-50{color:rgba(0,0,0,.5)}.text-white-50{color:rgba(255,255,255,.5)}.text-hide{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.text-decoration-none{text-decoration:none}.text-reset{color:inherit}.visible{visibility:visible}@media print{*,::after,::before{text-shadow:none;box-shadow:none}a:not(.btn){text-decoration:underline}pre{white-space:pre-wrap}pre{border:1px solid #adb5bd;page-break-inside:avoid}img{page-break-inside:avoid}h2,h3,p{orphans:3;widows:3}h2,h3{page-break-after:avoid}@page{size:a3}body{min-width:992px}.container{min-width:992px}.table{border-collapse:collapse}.table-dark{color:inherit}}@-webkit-keyframes sbx-reset-in{0%{-webkit-transform:translate3d(-20%,0,0);transform:translate3d(-20%,0,0);opacity:0}100%{-webkit-transform:none;transform:none;opacity:1}}@keyframes sbx-reset-in{0%{-webkit-transform:translate3d(-20%,0,0);transform:translate3d(-20%,0,0);opacity:0}100%{-webkit-transform:none;transform:none;opacity:1}}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans","Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"}a:link,a:visited{color:#f14600;text-decoration:none}a:active,a:hover{text-decoration:underline}.btn:disabled{cursor:default;opacity:.4}#logo-text{width:180px;margin-left:12px}.display-5{font-size:2rem;font-weight:300;line-height:1.2}.display-6{font-size:1.75rem;font-weight:300;line-height:1.2}.bg-dark-alt,.bg-dark-alt:focus{background:#36363f}.bg-orange,.bg-orange:focus{background:#f14600}.text-dark-alt{color:#36363f}.btn-dark-alt{background:#36363f}.btn-dark-alt:focus{background:#36363f}.btn-outline-orange{border-color:#f14600;color:#f14600}.btn-orange,.btn-outline-orange:hover{background:#f14600;color:#fff}.btn:active,.btn:hover{text-decoration:none}.text-orange{color:#f14600}details{background:#444451;color:#eee;padding:1rem;margin-bottom:1rem;margin-top:1rem}summary{font-weight:700;color:#eee}.headerlink{text-decoration:none;margin-left:.5rem}#content table{border:1px solid #dee2e6;width:100%;margin-bottom:1rem;overflow-x:auto}#content code{color:#000;background:#eee;padding:.125rem .25rem}#content code.syntax{padding:0}#content pre{background:#efefef;padding:1rem;line-height:1.25}@media print{body{min-width:0}code,h1,h2,h3,h4,h5,h6,img,li,p,pre{page-break-inside:avoid}}@media(prefers-color-scheme:dark){#to-full-website,body.amp,body[data-spy]{background:#1c1c1c;color:#efefef}.invert-dark{filter:invert(100%)}#content table{border:1px solid #2a2b2c}#content code{background:#444;color:#eee;padding:.125rem .25rem}#content pre{background:#444;color:#eee}}.syntax{background:#f8f9fa;color:#2f1e2e}.syntax .c{color:#8d8687}.syntax .k{color:#000;font-weight:700}.syntax .n{color:#2f1e2e}.syntax .o{color:#800}.syntax .p{color:#2f1e2e}.syntax .c1{color:#8d8687}.syntax .ld{color:#48b685}.syntax .m{color:#08f}.syntax .s{color:#48b685}.syntax .nb{color:#2f1e2e}.syntax .py{color:#2f1e2e}.syntax .nt{color:#5bc4bf}.syntax .mi{color:#08f}.syntax .sb{color:#48b685}.syntax .s2{color:#48b685}.syntax .se{color:#08f}.syntax .s1{color:#080}.syntax .ss{color:#48b685}@media(prefers-color-scheme:dark){.syntax .k{color:#c78cff}.syntax .ld{color:#64ffbb}.syntax .s{color:#64ffbb}.syntax .sb{color:#64ffbb}.syntax .s2{color:#64ffbb}.syntax .s1{color:#64ffbb}.syntax .ss{color:#64ffbb}.syntax .c{color:#64ffbb}.syntax .n{color:#f8f9fa}.syntax .p{color:#f8f9fa}.syntax .nb{color:#f8f9fa}.syntax .py{color:#f8f9fa}}</style><script async custom-element=amp-analytics src=https://cdn.ampproject.org/v0/amp-analytics-0.1.js></script><script async custom-element=amp-iframe src=https://cdn.ampproject.org/v0/amp-iframe-0.1.js></script></head> <body class=amp dir=ltr> <div class="container-fluid container-lg pb-5"> <div class="row pt-3 mb-3"> <div class=col> <a href=/ class=text-decoration-none> <amp-img class="d-inline-block mr-3" layout=fixed width=40 height=36 src=/images/logo.svg alt="ClickHouse logo" title="ClickHouse logo"></amp-img><amp-img class="invert-dark d-inline-block" layout=fixed width=238 height=36 src=/images/clickhouse-black.svg alt=ClickHouse title=ClickHouse></amp-img> </a> </div> </div> <div class=row> <div id=content class=col> <h1 id=clickhouse-tutorial>ClickHouse チュートリアル<a class=headerlink href=../amp/#clickhouse-tutorial title="Permanent link"> </a></h1> <h2 id=what-to-expect-from-this-tutorial>このチュートリアルに期待されることは？<a class=headerlink href=../amp/#what-to-expect-from-this-tutorial title="Permanent link"> </a></h2> <p>このチュートリアルでは、単純なClickHouseクラスターを設定する方法について説明します。それは小規模ですが、耐障害性とスケーラブルになります。<br> 次に、データセット例のいずれかを使用してデータを入力し、いくつかのデモクエリを実行します。</p> <h2 id=single-node-setup>単一ノードの設定<a class=headerlink href=../amp/#single-node-setup title="Permanent link"> </a></h2> <p>分散環境は複雑なので、まずは単一のサーバーまたは仮想マシンにClickHouseを展開することから始めます。<br> ClickHouseは通常、<a href=../../install/amp/#install-from-deb-packages>deb</a> or <a href=../../install/amp/#from-rpm-packages>rpm</a> パッケージからインストールしますが、サポートされていないOSのために <a href=../../install/amp/#from-docker-image>代替案</a> があります。</p> <p>例えば、<code class=syntax>deb</code> パッケージを選択して実行する場合:</p> <div class=codehilite><pre><span></span><code class=syntax>sudo apt-get install apt-transport-https ca-certificates dirmngr
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv E0C56BD4
+
+<span class=nb>echo</span> <span class=s2>"deb https://repo.clickhouse.tech/deb/stable/ main/"</span> <span class=p>|</span> sudo tee <span class=se>\</span>
+    /etc/apt/sources.list.d/clickhouse.list
+sudo apt-get update
+
+sudo apt-get install -y clickhouse-server clickhouse-client
+
+sudo service clickhouse-server start
+clickhouse-client
+</code></pre></div> <p>インストールされたパッケージの内容:</p> <ul> <li><code class=syntax>clickhouse-client</code> パッケージには <a href=../../../interfaces/cli/amp/ >clickhouse-client</a> アプリケーション、インタラクティブな ClickHouse コンソールクライアントが含まれています。</li> <li><code class=syntax>clickhouse-common</code> パッケージには、ClickHouse実行可能ファイルが含まれています。</li> <li><code class=syntax>clickhouse-server</code> パッケージには、ClickHouseをサーバとして実行するための設定ファイルが含まれています。</li> </ul> <p>サーバ設定ファイルは <code class=syntax>/etc/clickhouse-server/</code> にあります。先に進む前に、<code class=syntax>config.xml</code> の <code class=syntax>&lt;path&gt;</code> 要素に注目してください。<br> パスはデータを保存する場所を決めるので、ディスク容量の大きいボリュームに配置する必要があります。デフォルト値は <code class=syntax>/var/lib/clickhouse/</code> です。<br> 設定を調整したい場合、<code class=syntax>config.xml</code> ファイルを直接編集するのは不便です。<code class=syntax>config.xml</code> の要素をオーバーライドするために推奨される方法は、<code class=syntax>config.xml</code> の「パッチ」として機能する <a href=../../../operations/configuration-files/amp/ >config.d ディレクトリ内のファイル</a> を作成することです。</p> <p>お気づきかもしれませんが、<code class=syntax>clickhouse-server</code> は パッケージインストール後に自動的に起動されたり、アップデート後に自動的に再起動されることはありません。サーバの起動方法は init システムに依存しており、大抵は以下のようになっています:</p> <div class=codehilite><pre><span></span><code class=syntax>sudo service clickhouse-server start
+</code></pre></div> <p>または</p> <div class=codehilite><pre><span></span><code class=syntax>sudo /etc/init.d/clickhouse-server start
+</code></pre></div> <p>サーバログのデフォルトの場所は <code class=syntax>/var/log/clickhouse-server/</code> です。サーバが クライアントからの接続の準備が整うと、<code class=syntax>Ready for connections</code> メッセージをログに出力します。</p> <p>一度 <code class=syntax>clickhouse-server</code> を起動して実行すると、<code class=syntax>clickhouse-client</code> を使ってサーバに接続し、<code class=syntax>SELECT "Hello, world!";</code> のようなテストクエリを実行することができます。</p> <details><summary>Clickhouse-クライアントのクイックtips</summary> <p></p> <p>インタラクティブモード:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client
+clickhouse-client --host<span class=o>=</span>... --port<span class=o>=</span>... --user<span class=o>=</span>... --password<span class=o>=</span>...
+</code></pre></div> <p>複数行クエリを有効にする:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client -m
+clickhouse-client --multiline
+</code></pre></div> <p>バッチモードでのクエリの実行:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query<span class=o>=</span><span class=s1>'SELECT 1'</span>
+<span class=nb>echo</span> <span class=s1>'SELECT 1'</span> <span class=p>|</span> clickhouse-client
+clickhouse-client <span class=o>&lt;&lt;&lt;</span> <span class=s1>'SELECT 1'</span>
+</code></pre></div> <p>指定したフォーマットでファイルからデータを insert する:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query<span class=o>=</span><span class=s1>'INSERT INTO table VALUES'</span> &lt; data.txt
+clickhouse-client --query<span class=o>=</span><span class=s1>'INSERT INTO table FORMAT TabSeparated'</span> &lt; data.tsv
+</code></pre></div> </details> <h2 id=import-sample-dataset>サンプルデータセットのインポート<a class=headerlink href=../amp/#import-sample-dataset title="Permanent link"> </a></h2> <p>ClickHouseサーバーにいくつかのサンプルデータを入れてみましょう。<br> このチュートリアルでは、ClickHouseがオープンソースになる以前(詳しくは <a href=../../../introduction/history/amp/ >歴史について</a> を参照)に初めて本番用途で使われたサービスである、Yandex.Metricaの匿名化されたデータを使用します。</p> <p><a href=../../example-datasets/metrica/amp/ >Yandex.Metrica データセットをインポートするにはいくつかの方法</a> がありますが, チュートリアルとして、最もよく使う方法を使用します。</p> <h3 id=download-and-extract-table-data>テーブルデータのダウンロードと展開<a class=headerlink href=../amp/#download-and-extract-table-data title="Permanent link"> </a></h3> <div class=codehilite><pre><span></span><code class=syntax>curl https://datasets.clickhouse.tech/hits/tsv/hits_v1.tsv.xz <span class=p>|</span> unxz --threads<span class=o>=</span><span class=sb>`</span>nproc<span class=sb>`</span> &gt; hits_v1.tsv
+curl https://datasets.clickhouse.tech/visits/tsv/visits_v1.tsv.xz <span class=p>|</span> unxz --threads<span class=o>=</span><span class=sb>`</span>nproc<span class=sb>`</span> &gt; visits_v1.tsv
+</code></pre></div> <p>展開されたファイルのサイズは約10GBです。</p> <h3 id=create-tables>テーブルの作成<a class=headerlink href=../amp/#create-tables title="Permanent link"> </a></h3> <p>ほとんどのデータベース管理システムのように, ClickHouseは論理的にテーブルを "データベース" にグループ化します。<br> <code class=syntax>default</code> データベースがありますが、<code class=syntax>tutorial</code> という名前の新しいものを作成します:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query <span class=s2>"CREATE DATABASE IF NOT EXISTS tutorial"</span>
+</code></pre></div> <p>テーブルを作成するための構文はデータベースに比べてはるかに複雑です(<a href=../../../sql-reference/statements/create/amp/ >参照</a>)。通常、<code class=syntax>CREATE TABLE</code> 文は3つのキーを指定しなければなりません。</p> <ol> <li>作成するテーブルの名前。</li> <li>テーブルのスキーマ。つまり、カラムと <a href=../../../sql-reference/data-types/amp/ >データ型</a> のリスト。</li> <li><a href=../../../engines/table-engines/amp/ >テーブルエンジン</a> と、このテーブルへのクエリが物理的に実行される方法に関するすべての詳細を決定する設定。</li> </ol> <p>Yandex.Metricaはウェブ解析サービスであり、サンプルデータセットでは機能が網羅されていないため、作成するテーブルは2つしかありません:</p> <ul> <li><code class=syntax>hits</code> はサービスの対象となるすべてのウェブサイト上ですべてのユーザが行った各アクションのテーブルです。</li> <li><code class=syntax>visits</code> は、個々のアクションではなく、あらかじめ構築されたセッションを含むテーブルです。</li> </ul> <p>これらのテーブルの実際の CREATE TABLE クエリを実行しましょう:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_v1</span>
+<span class=p>(</span>
+    <span class=o>`</span><span class=n>WatchID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>JavaEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Title</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GoodEvent</span><span class=o>`</span> <span class=n>Int16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>EventTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>EventDate</span><span class=o>`</span> <span class=nb>Date</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CounterID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientIP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientIP6</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RegionID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CounterClass</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OS</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgent</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>URL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Referer</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>URLDomain</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererDomain</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Refresh</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsRobot</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererCategories</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>URLCategories</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>URLRegions</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RefererRegions</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>ResolutionWidth</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResolutionHeight</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResolutionDepth</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashMajor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashMinor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashMinor2</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NetMajor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NetMinor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgentMajor</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgentMinor</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>2</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>CookieEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>JavascriptEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsMobile</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>MobilePhone</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>MobilePhoneModel</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Params</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IPNetworkID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>TraficSourceID</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SearchEngineID</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SearchPhrase</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>AdvEngineID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsArtifical</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WindowClientWidth</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WindowClientHeight</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientTimeZone</span><span class=o>`</span> <span class=n>Int16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientEventTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion1</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion2</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion3</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion4</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>PageCharset</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CodeVersion</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsLink</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsDownload</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsNotBounce</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FUniqID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsOldCounter</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsEvent</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsParameter</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>DontCountHits</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WithHash</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HitColor</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>1</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>UTCEventTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Age</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Sex</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Income</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Interests</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Robotness</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GeneralInterests</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RemoteIP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RemoteIP6</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>WindowName</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenerName</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HistoryLength</span><span class=o>`</span> <span class=n>Int16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>BrowserLanguage</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>2</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>BrowserCountry</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>2</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>SocialNetwork</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SocialAction</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HTTPError</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SendTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>DNSTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ConnectTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResponseStartTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResponseEndTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FetchTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RedirectTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>DOMInteractiveTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>DOMContentLoadedTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>DOMCompleteTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>LoadEventStartTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>LoadEventEndTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NSToDOMContentLoadedTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FirstPaintTiming</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RedirectCount</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SocialSourceNetworkID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SocialSourcePage</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParamPrice</span><span class=o>`</span> <span class=n>Int64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParamOrderID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParamCurrency</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>3</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>ParamCurrencyID</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GoalsReached</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>OpenstatServiceName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatCampaignID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatAdID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatSourceID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMSource</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMMedium</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMCampaign</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMContent</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMTerm</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FromTag</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HasGCLID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>URLHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CLID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>YCLID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ShareService</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ShareURL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ShareTitle</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParsedParams</span><span class=o>`</span> <span class=n>Nested</span><span class=p>(</span>
+        <span class=n>Key1</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key2</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key3</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key4</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key5</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>ValueDouble</span> <span class=n>Float64</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>IslandID</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RequestNum</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RequestTry</span><span class=o>`</span> <span class=n>UInt8</span>
+<span class=p>)</span>
+<span class=n>ENGINE</span> <span class=o>=</span> <span class=n>MergeTree</span><span class=p>()</span>
+<span class=n>PARTITION</span> <span class=k>BY</span> <span class=n>toYYYYMM</span><span class=p>(</span><span class=n>EventDate</span><span class=p>)</span>
+<span class=k>ORDER</span> <span class=k>BY</span> <span class=p>(</span><span class=n>CounterID</span><span class=p>,</span> <span class=n>EventDate</span><span class=p>,</span> <span class=n>intHash32</span><span class=p>(</span><span class=n>UserID</span><span class=p>))</span>
+<span class=n>SAMPLE</span> <span class=k>BY</span> <span class=n>intHash32</span><span class=p>(</span><span class=n>UserID</span><span class=p>)</span>
+</code></pre></div> <div class=codehilite><pre><span></span><code class=syntax><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>visits_v1</span>
+<span class=p>(</span>
+    <span class=o>`</span><span class=n>CounterID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>StartDate</span><span class=o>`</span> <span class=nb>Date</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Sign</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsNew</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>VisitID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>StartTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Duration</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTCStartTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>PageViews</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Hits</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsBounce</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Referer</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>StartURL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererDomain</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>StartURLDomain</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>EndURL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>LinkURL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsDownload</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>TraficSourceID</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SearchEngineID</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SearchPhrase</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>AdvEngineID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>PlaceID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererCategories</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>URLCategories</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>URLRegions</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RefererRegions</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>IsYandex</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GoalReachesDepth</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GoalReachesURL</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GoalReachesAny</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SocialSourceNetworkID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SocialSourcePage</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>MobilePhoneModel</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientEventTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RegionID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientIP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientIP6</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>RemoteIP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RemoteIP6</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>IPNetworkID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion3</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CodeVersion</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResolutionWidth</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResolutionHeight</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgentMajor</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgentMinor</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WindowClientWidth</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WindowClientHeight</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion2</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion4</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashVersion3</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashVersion4</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClientTimeZone</span><span class=o>`</span> <span class=n>Int16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OS</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UserAgent</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ResolutionDepth</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashMajor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FlashMinor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NetMajor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NetMinor</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>MobilePhone</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SilverlightVersion1</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Age</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Sex</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Income</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>JavaEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>CookieEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>JavascriptEnable</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>IsMobile</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>BrowserLanguage</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>BrowserCountry</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Interests</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>Robotness</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>GeneralInterests</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>Params</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>String</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>Goals</span><span class=o>`</span> <span class=n>Nested</span><span class=p>(</span>
+        <span class=n>ID</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=nb>Serial</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>EventTime</span> <span class=n>DateTime</span><span class=p>,</span>
+        <span class=n>Price</span> <span class=n>Int64</span><span class=p>,</span>
+        <span class=n>OrderID</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>CurrencyID</span> <span class=n>UInt32</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>WatchIDs</span><span class=o>`</span> <span class=nb>Array</span><span class=p>(</span><span class=n>UInt64</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>ParamSumPrice</span><span class=o>`</span> <span class=n>Int64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParamCurrency</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>3</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>ParamCurrencyID</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickLogID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickEventID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickGoodEvent</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickEventTime</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickPriorityID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickPhraseID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickPageID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickPlaceID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickTypeID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickResourceID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickCost</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickClientIP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickDomainID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickURL</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickAttempt</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickOrderID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickBannerID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickMarketCategoryID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickMarketPP</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickMarketCategoryName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickMarketPPName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickAWAPSCampaignName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickPageName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickTargetType</span><span class=o>`</span> <span class=n>UInt16</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickTargetPhraseID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickContextType</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickSelectType</span><span class=o>`</span> <span class=nb>Int8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickOptions</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ClickGroupBannerID</span><span class=o>`</span> <span class=n>Int32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatServiceName</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatCampaignID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatAdID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatSourceID</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMSource</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMMedium</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMCampaign</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMContent</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMTerm</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FromTag</span><span class=o>`</span> <span class=n>String</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>HasGCLID</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FirstVisit</span><span class=o>`</span> <span class=n>DateTime</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>PredLastVisit</span><span class=o>`</span> <span class=nb>Date</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>LastVisit</span><span class=o>`</span> <span class=nb>Date</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>TotalVisits</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>TraficSource</span><span class=o>`</span> <span class=n>Nested</span><span class=p>(</span>
+        <span class=n>ID</span> <span class=nb>Int8</span><span class=p>,</span>
+        <span class=n>SearchEngineID</span> <span class=n>UInt16</span><span class=p>,</span>
+        <span class=n>AdvEngineID</span> <span class=n>UInt8</span><span class=p>,</span>
+        <span class=n>PlaceID</span> <span class=n>UInt16</span><span class=p>,</span>
+        <span class=n>SocialSourceNetworkID</span> <span class=n>UInt8</span><span class=p>,</span>
+        <span class=k>Domain</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>SearchPhrase</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>SocialSourcePage</span> <span class=n>String</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>Attendance</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>CLID</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>YCLID</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NormalizedRefererHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>SearchPhraseHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>RefererDomainHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NormalizedStartURLHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>StartURLDomainHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>NormalizedEndURLHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>TopLevelDomain</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>URLScheme</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatServiceNameHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatCampaignIDHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatAdIDHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>OpenstatSourceIDHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMSourceHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMMediumHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMCampaignHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMContentHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>UTMTermHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>FromHash</span><span class=o>`</span> <span class=n>UInt64</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WebVisorEnabled</span><span class=o>`</span> <span class=n>UInt8</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>WebVisorActivity</span><span class=o>`</span> <span class=n>UInt32</span><span class=p>,</span>
+    <span class=o>`</span><span class=n>ParsedParams</span><span class=o>`</span> <span class=n>Nested</span><span class=p>(</span>
+        <span class=n>Key1</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key2</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key3</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key4</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>Key5</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>ValueDouble</span> <span class=n>Float64</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>Market</span><span class=o>`</span> <span class=n>Nested</span><span class=p>(</span>
+        <span class=k>Type</span> <span class=n>UInt8</span><span class=p>,</span>
+        <span class=n>GoalID</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>OrderID</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>OrderPrice</span> <span class=n>Int64</span><span class=p>,</span>
+        <span class=n>PP</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>DirectPlaceID</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>DirectOrderID</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>DirectBannerID</span> <span class=n>UInt32</span><span class=p>,</span>
+        <span class=n>GoodID</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>GoodName</span> <span class=n>String</span><span class=p>,</span>
+        <span class=n>GoodQuantity</span> <span class=n>Int32</span><span class=p>,</span>
+        <span class=n>GoodPrice</span> <span class=n>Int64</span><span class=p>),</span>
+    <span class=o>`</span><span class=n>IslandID</span><span class=o>`</span> <span class=n>FixedString</span><span class=p>(</span><span class=mi>16</span><span class=p>)</span>
+<span class=p>)</span>
+<span class=n>ENGINE</span> <span class=o>=</span> <span class=n>CollapsingMergeTree</span><span class=p>(</span><span class=n>Sign</span><span class=p>)</span>
+<span class=n>PARTITION</span> <span class=k>BY</span> <span class=n>toYYYYMM</span><span class=p>(</span><span class=n>StartDate</span><span class=p>)</span>
+<span class=k>ORDER</span> <span class=k>BY</span> <span class=p>(</span><span class=n>CounterID</span><span class=p>,</span> <span class=n>StartDate</span><span class=p>,</span> <span class=n>intHash32</span><span class=p>(</span><span class=n>UserID</span><span class=p>),</span> <span class=n>VisitID</span><span class=p>)</span>
+<span class=n>SAMPLE</span> <span class=k>BY</span> <span class=n>intHash32</span><span class=p>(</span><span class=n>UserID</span><span class=p>)</span>
+</code></pre></div> <p>これらのクエリは、<code class=syntax>clickhouse-client</code> の対話型モード(事前にクエリを指定せずにターミナルで起動するだけです)を使って実行するか、<a href=../../../interfaces/amp/ >代替インターフェイス</a> で実行できます。</p> <p>見ての通り、 <code class=syntax>hits_v1</code> は <a href=../../../engines/table-engines/mergetree-family/mergetree/amp/ >基本的な MergeTree エンジン</a> を使っており、<code class=syntax>visits_v1</code> は <a href=../../../engines/table-engines/mergetree-family/collapsingmergetree/amp/ >Collapsing MergeTree</a> という変種を使っています。</p> <h3 id=import-data>データのインポート<a class=headerlink href=../amp/#import-data title="Permanent link"> </a></h3> <p>ClickHouseへのデータのインポートは、他の多くのSQLデータベースのように<a href=../../../sql-reference/statements/insert-into/amp/ >INSERT INTO</a>クエリを介して行われます。しかし、データは通常、<code class=syntax>VALUES</code> 句 (これもサポートされています) の代わりに、<a href=../../../interfaces/formats/amp/ >サポートされているシリアライズ形式</a> のいずれかで提供されます。</p> <p>先ほどダウンロードしたファイルはタブ区切り形式になっており、コンソールクライアントから次のようにインポートします:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query <span class=s2>"INSERT INTO tutorial.hits_v1 FORMAT TSV"</span> --max_insert_block_size<span class=o>=</span><span class=m>100000</span> &lt; hits_v1.tsv
+clickhouse-client --query <span class=s2>"INSERT INTO tutorial.visits_v1 FORMAT TSV"</span> --max_insert_block_size<span class=o>=</span><span class=m>100000</span> &lt; visits_v1.tsv
+</code></pre></div> <p>ClickHouseには多くの <a href=../../../operations/settings/amp/ >調整のための設定</a> があり、コンソールクライアントで引数として指定する方法があります。どのような設定が利用可能で、それが何を意味し、デフォルトは何なのかを知る最も簡単な方法は、<code class=syntax>system.settings</code> テーブルにクエリすることです:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>SELECT</span> <span class=n>name</span><span class=p>,</span> <span class=n>value</span><span class=p>,</span> <span class=n>changed</span><span class=p>,</span> <span class=n>description</span>
+<span class=k>FROM</span> <span class=k>system</span><span class=p>.</span><span class=n>settings</span>
+<span class=k>WHERE</span> <span class=n>name</span> <span class=k>LIKE</span> <span class=s1>'%max_insert_b%'</span>
+<span class=n>FORMAT</span> <span class=n>TSV</span>
+
+<span class=n>max_insert_block_size</span>    <span class=mi>1048576</span>    <span class=mi>0</span>    <span class=ss>"The maximum block size for insertion, if we control the creation of blocks for insertion."</span>
+</code></pre></div> <p>必要に応じて、インポート後のテーブルを<a href=../../../sql-reference/statements/optimize/amp/ >OPTIMIZE</a>することができます。<br> MergeTree-familyのエンジンで設定されているテーブルは、常にバックグラウンドでデータ部分のマージを行い、データストレージを最適化します(あるいは、少なくともそれが意味のあるものかどうかをチェックします)。</p> <p>以下のクエリは、テーブルエンジンがストレージの最適化を後で行うのではなく、今すぐに行うように強制します:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query <span class=s2>"OPTIMIZE TABLE tutorial.hits_v1 FINAL"</span>
+clickhouse-client --query <span class=s2>"OPTIMIZE TABLE tutorial.visits_v1 FINAL"</span>
+</code></pre></div> <p>これらのクエリは、I/OとCPUに負荷のかかる処理を開始するので、テーブルが継続して新しいデータを受け取る場合には、そのままにしてバックグラウンドでマージを実行させた方が良いでしょう。</p> <p>これで、テーブルのインポートが成功したかどうかを確認することができます:</p> <div class=codehilite><pre><span></span><code class=syntax>clickhouse-client --query <span class=s2>"SELECT COUNT(*) FROM tutorial.hits_v1"</span>
+clickhouse-client --query <span class=s2>"SELECT COUNT(*) FROM tutorial.visits_v1"</span>
+</code></pre></div> <h2 id=example-queries>クエリの例<a class=headerlink href=../amp/#example-queries title="Permanent link"> </a></h2> <div class=codehilite><pre><span></span><code class=syntax><span class=k>SELECT</span>
+    <span class=n>StartURL</span> <span class=k>AS</span> <span class=n>URL</span><span class=p>,</span>
+    <span class=k>AVG</span><span class=p>(</span><span class=n>Duration</span><span class=p>)</span> <span class=k>AS</span> <span class=n>AvgDuration</span>
+<span class=k>FROM</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>visits_v1</span>
+<span class=k>WHERE</span> <span class=n>StartDate</span> <span class=k>BETWEEN</span> <span class=s1>'2014-03-23'</span> <span class=k>AND</span> <span class=s1>'2014-03-30'</span>
+<span class=k>GROUP</span> <span class=k>BY</span> <span class=n>URL</span>
+<span class=k>ORDER</span> <span class=k>BY</span> <span class=n>AvgDuration</span> <span class=k>DESC</span>
+<span class=k>LIMIT</span> <span class=mi>10</span>
+</code></pre></div> <div class=codehilite><pre><span></span><code class=syntax><span class=k>SELECT</span>
+    <span class=k>sum</span><span class=p>(</span><span class=n>Sign</span><span class=p>)</span> <span class=k>AS</span> <span class=n>visits</span><span class=p>,</span>
+    <span class=n>sumIf</span><span class=p>(</span><span class=n>Sign</span><span class=p>,</span> <span class=n>has</span><span class=p>(</span><span class=n>Goals</span><span class=p>.</span><span class=n>ID</span><span class=p>,</span> <span class=mi>1105530</span><span class=p>))</span> <span class=k>AS</span> <span class=n>goal_visits</span><span class=p>,</span>
+    <span class=p>(</span><span class=mi>100</span><span class=p>.</span> <span class=o>*</span> <span class=n>goal_visits</span><span class=p>)</span> <span class=o>/</span> <span class=n>visits</span> <span class=k>AS</span> <span class=n>goal_percent</span>
+<span class=k>FROM</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>visits_v1</span>
+<span class=k>WHERE</span> <span class=p>(</span><span class=n>CounterID</span> <span class=o>=</span> <span class=mi>912887</span><span class=p>)</span> <span class=k>AND</span> <span class=p>(</span><span class=n>toYYYYMM</span><span class=p>(</span><span class=n>StartDate</span><span class=p>)</span> <span class=o>=</span> <span class=mi>201403</span><span class=p>)</span> <span class=k>AND</span> <span class=p>(</span><span class=k>domain</span><span class=p>(</span><span class=n>StartURL</span><span class=p>)</span> <span class=o>=</span> <span class=s1>'yandex.ru'</span><span class=p>)</span>
+</code></pre></div> <h2 id=cluster-deployment>クラスタのデプロイ<a class=headerlink href=../amp/#cluster-deployment title="Permanent link"> </a></h2> <p>ClickHouseクラスタは均質なクラスタ(homogenous cluster)です。セットアップ手順は以下です:</p> <ol> <li>クラスタのすべてのマシンにClickHouse serverをインストールする</li> <li>設定ファイルにクラスタ設定を行う</li> <li>各インスタンスにローカルテーブルを作成する</li> <li><a href=../../../engines/table-engines/special/distributed/amp/ >分散テーブル</a> を作成する</li> </ol> <p><a href=../../../engines/table-engines/special/distributed/amp/ >分散テーブル</a> は、<br> 実際には ClickHouse クラスタのローカルテーブルへの "ビュー "のようなものです。<br> 分散テーブルからの SELECT クエリは、すべてのクラスタのシャードのリソースを使用して実行されます。<br> また、複数のクラスタのための設定を行い、異なるクラスタにビューを提供する複数の分散テーブルを作成することができます。</p> <p>3つのシャード、各1つのレプリカを持つクラスタの設定例:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=nt>&lt;remote_servers&gt;</span>
+    <span class=nt>&lt;perftest_3shards_1replicas&gt;</span>
+        <span class=nt>&lt;shard&gt;</span>
+            <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest01j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+            <span class=nt>&lt;/replica&gt;</span>
+        <span class=nt>&lt;/shard&gt;</span>
+        <span class=nt>&lt;shard&gt;</span>
+            <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest02j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+            <span class=nt>&lt;/replica&gt;</span>
+        <span class=nt>&lt;/shard&gt;</span>
+        <span class=nt>&lt;shard&gt;</span>
+            <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest03j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+            <span class=nt>&lt;/replica&gt;</span>
+        <span class=nt>&lt;/shard&gt;</span>
+    <span class=nt>&lt;/perftest_3shards_1replicas&gt;</span>
+<span class=nt>&lt;/remote_servers&gt;</span>
+</code></pre></div> <p>さらにデモンストレーションとして、<code class=syntax>hits_v1</code> で使ったのと同じ <code class=syntax>CREATE TABLE</code> クエリを使って新しいローカルテーブルを作成してみましょう:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_local</span> <span class=p>(...)</span> <span class=n>ENGINE</span> <span class=o>=</span> <span class=n>MergeTree</span><span class=p>()</span> <span class=p>...</span>
+</code></pre></div> <p>クラスタのローカルテーブルへのビューを提供する分散テーブルを作成します:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_all</span> <span class=k>AS</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_local</span>
+<span class=n>ENGINE</span> <span class=o>=</span> <span class=n>Distributed</span><span class=p>(</span><span class=n>perftest_3shards_1replicas</span><span class=p>,</span> <span class=n>tutorial</span><span class=p>,</span> <span class=n>hits_local</span><span class=p>,</span> <span class=n>rand</span><span class=p>());</span>
+</code></pre></div> <p>通常は、クラスタのすべてのマシンに同様の分散テーブルを作成します。これにより、クラスタのどのマシンでも分散クエリを実行することができます。<br> また、<a href=../../../sql-reference/table-functions/remote/amp/ >remote</a> テーブル関数を使用して、与えられたSELECTクエリのための一時的な分散テーブルを作成する代替オプションもあります。</p> <p>分散テーブルに <a href=../../../sql-reference/statements/insert-into/amp/ >INSERT SELECT</a>を実行して、テーブルを複数のサーバに分散させてみましょう。</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_all</span> <span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_v1</span><span class=p>;</span>
+</code></pre></div> <div class="admonition warning alert pb-0 mb-4 alert-warning" role=alert> <p class="admonition-title alert-heading display-6 mb-2">注意</p> <p>この方法は、大きなテーブルのシャーディングには適していません。<br> 別のツール <a href=../../../operations/utilities/clickhouse-copier/amp/ class=alert-link>clickhouse-copier</a> があり、任意の大きなテーブルを再シャーディングすることができます。</p> </div> <p>予想通り、計算量の多いクエリは、1台のサーバではなく3台のサーバを利用した方がN倍速く実行されます。</p> <p>このケースでは、3つのシャードを持つクラスタを使用しており、それぞれに1つのレプリカが含まれています。</p> <p>本番環境でレジリエンスを提供するためには、各シャードが複数のアベイラビリティゾーンまたはデータセンター(または少なくともラック)の間で2~3個のレプリカを含むことをお勧めします。</p> <p>3つのレプリカを含む1つのシャードのクラスタの設定例:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=nt>&lt;remote_servers&gt;</span>
+    ...
+    <span class=nt>&lt;perftest_1shards_3replicas&gt;</span>
+        <span class=nt>&lt;shard&gt;</span>
+            <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest01j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+             <span class=nt>&lt;/replica&gt;</span>
+             <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest02j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+             <span class=nt>&lt;/replica&gt;</span>
+             <span class=nt>&lt;replica&gt;</span>
+                <span class=nt>&lt;host&gt;</span>example-perftest03j.yandex.ru<span class=nt>&lt;/host&gt;</span>
+                <span class=nt>&lt;port&gt;</span>9000<span class=nt>&lt;/port&gt;</span>
+             <span class=nt>&lt;/replica&gt;</span>
+        <span class=nt>&lt;/shard&gt;</span>
+    <span class=nt>&lt;/perftest_1shards_3replicas&gt;</span>
+<span class=nt>&lt;/remote_servers&gt;</span>
+</code></pre></div> <p>ネイティブレプリケーションを有効にするには <a href=http://zookeeper.apache.org/ rel="external nofollow noreferrer" target=_blank>ZooKeeper</a> が必要です。<br> ClickHouseは全てのレプリカ上でデータの整合性を取り、障害発生時には自動的にリストア処理を行います。<br> ZooKeeperクラスタは別サーバ(ClickHouseを含む他のプロセスが稼働していない場所)に配置することをお勧めします。</p> <p>ネイティブ複製を有効にする <a href=http://zookeeper.apache.org/ rel="external nofollow noreferrer" target=_blank>飼育係</a> 必須です。 ClickHouseのデータの整合性はすべてのレプリカと回復手続き後の不動します。 別のサーバー(ClickHouseを含む他のプロセスが実行されていない場所)にZooKeeperクラスターを展開することをお勧めします。</p> <div class="admonition note alert pb-0 mb-4 alert-primary" role=alert> <p class="admonition-title alert-heading display-6 mb-2">備考</p> <p>ZooKeeperは厳密な要件ではありません: いくつかの簡単なケースでは、アプリケーションコードからすべてのレプリカにデータを書き込むことでデータを複製することができます。このケースにおいて、このアプローチは <strong>お勧めできません</strong>。ClickHouseはすべてのレプリカ上でデータの一貫性を保証することができません。したがって、それはあなたのアプリケーションの責任になります。</p> </div> <p>ZooKeeperの場所は設定ファイルで指定します:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=nt>&lt;zookeeper&gt;</span>
+    <span class=nt>&lt;node&gt;</span>
+        <span class=nt>&lt;host&gt;</span>zoo01.yandex.ru<span class=nt>&lt;/host&gt;</span>
+        <span class=nt>&lt;port&gt;</span>2181<span class=nt>&lt;/port&gt;</span>
+    <span class=nt>&lt;/node&gt;</span>
+    <span class=nt>&lt;node&gt;</span>
+        <span class=nt>&lt;host&gt;</span>zoo02.yandex.ru<span class=nt>&lt;/host&gt;</span>
+        <span class=nt>&lt;port&gt;</span>2181<span class=nt>&lt;/port&gt;</span>
+    <span class=nt>&lt;/node&gt;</span>
+    <span class=nt>&lt;node&gt;</span>
+        <span class=nt>&lt;host&gt;</span>zoo03.yandex.ru<span class=nt>&lt;/host&gt;</span>
+        <span class=nt>&lt;port&gt;</span>2181<span class=nt>&lt;/port&gt;</span>
+    <span class=nt>&lt;/node&gt;</span>
+<span class=nt>&lt;/zookeeper&gt;</span>
+</code></pre></div> <p>また、テーブル作成時に使用する各シャードとレプリカを識別するためのマクロを設定する必要があります:</p> <div class=codehilite><pre><span></span><code class=syntax><span class=nt>&lt;macros&gt;</span>
+    <span class=nt>&lt;shard&gt;</span>01<span class=nt>&lt;/shard&gt;</span>
+    <span class=nt>&lt;replica&gt;</span>01<span class=nt>&lt;/replica&gt;</span>
+<span class=nt>&lt;/macros&gt;</span>
+</code></pre></div> <p>レプリケートされたテーブルの作成時にレプリカが存在しない場合、新しい最初のレプリカがインスタンス化されます。既に有効なレプリカがある場合は、新しいレプリカが既存のレプリカからデータをクローンします。<br> 最初にすべての複製されたテーブルを作成し、そこにデータを挿入する方法があります。別の方法として、いくつかのレプリカを作成して、データ挿入後またはデータ挿入中に他のレプリカを追加するという方法もあります。</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>CREATE</span> <span class=k>TABLE</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_replica</span> <span class=p>(...)</span>
+<span class=n>ENGINE</span> <span class=o>=</span> <span class=n>ReplcatedMergeTree</span><span class=p>(</span>
+    <span class=s1>'/clickhouse_perftest/tables/{shard}/hits'</span><span class=p>,</span>
+    <span class=s1>'{replica}'</span>
+<span class=p>)</span>
+<span class=p>...</span>
+</code></pre></div> <p>ここでは、<a href=../../../engines/table-engines/mergetree-family/replication/amp/ >ReplicatedMergeTree</a> テーブルエンジンを使用しています。<br> パラメータには、シャードとレプリカの識別子を含む ZooKeeper path を指定します。</p> <div class=codehilite><pre><span></span><code class=syntax><span class=k>INSERT</span> <span class=k>INTO</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_replica</span> <span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>tutorial</span><span class=p>.</span><span class=n>hits_local</span><span class=p>;</span>
+</code></pre></div> <p>レプリケーションはマルチマスターモードで動作します。<br> どのレプリカにもデータをロードすることができ、システムはそれを他のインスタンスと自動的に同期させます。<br> レプリケーションは非同期なので、ある時点ですべてのレプリカに最近挿入されたデータが含まれているとは限りません。<br> 少なくとも1つのレプリカは、データの取り込みを可能にするために起動しておく必要があります。<br> 他のレプリカはデータを同期させ、再びアクティブになると整合性を修復します。<br> この方法では、最近挿入されたデータが失われる可能性が低いことに注意してください。</p> <p><a href=https://clickhouse.tech/docs/en/getting_started/tutorial/ target=_blank>元の記事</a> <!--hide--></p> </div> </div> <div class=row> <div class=col> <div class="alert alert-light my-3"> <p class="float-right mb-0">Rating: RATING_VALUE - RATING_COUNT votes</p> <span class="alert-heading display-6">Article Rating</span> <div id=rating-stars class="display-6 mb-0">RATING_STARS</div> </div> <div id=content-footer class="text-muted pt-3 mb-5"> <div class=float-md-right>©2016–2020 Yandex LLC</div> <div>Built from <a href=https://github.com/ClickHouse/ClickHouse/commit/b030bfedd7db4603034643fd183cf7784a820193 rel="external nofollow noreferrer" target=_blank class=text-reset>b030bfedd7</a> </div> </div> </div> </div> <div id=to-full-website class="row fixed-bottom text-center bg-white py-3"> <div class=col> <a href=https://clickhouse.tech/docs/ja/getting-started/tutorial/ class="btn btn-lg btn-outline-orange">To full website</a> </div> </div> </div> <amp-analytics type=metrika> <script type=application/json>{
+"vars": {
+  "counterId": "18343495",
+  "triggers": {
+    "notBounce": {
+      "on": "timer",
+      "timerSpec": {
+        "immediate": false,
+        "interval": 15,
+        "maxTimerLength": 16
+      },
+      "request": "notBounce"
+    }
+  }
+}
+}</script> </amp-analytics> </body> </html> 
